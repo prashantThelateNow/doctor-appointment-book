@@ -3,9 +3,10 @@ import axios from 'axios';
 const authInterceptor = () => {
 	axios.interceptors.request.use(
 		(config) => {
-			const token = localStorage.getItem('token');
-			if (token) {
-				config.headers.common['Authorization'] = token;
+			const user = localStorage.getItem('userData');
+			if (!!user) {
+				let { token } = JSON.parse(user);
+				config.headers['Authorization'] = token;
 			}
 			return config;
 		},
@@ -27,7 +28,7 @@ const authInterceptor = () => {
 			if (error.response.status) {
 				switch (error.response.status) {
 					case 400:
-						//do something
+						alert(`${error.response.data.message}`);
 						break;
 
 					case 401:
