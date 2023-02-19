@@ -3,9 +3,8 @@ import axios from 'axios';
 const authInterceptor = () => {
 	axios.interceptors.request.use(
 		(config) => {
-			const user = localStorage.getItem('userData');
-			if (!!user) {
-				let { token } = JSON.parse(user);
+			const token = localStorage.getItem('authToken');
+			if (!!token) {
 				config.headers['Authorization'] = token;
 			}
 			return config;

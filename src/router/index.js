@@ -19,40 +19,39 @@ const routes = [
 			import(
 				/* webpackChunkName: "home" */ '../views/doctor-appointment/home/HomeView.vue'
 			),
-		children: [
-			// Sub views will be rendered inside User's <router-view>
-			// when path is matched
-			// ...other sub routes
-		],
 	},
 	{
 		path: '/doctor',
-		name: 'doctor',
 		component: () =>
 			import(
 				/* webpackChunkName: "doctor" */ '../views/doctor-appointment/doctor/DoctorView.vue'
 			),
 		children: [
-			// Sub views will be rendered inside User's <router-view>
-			// when path is matched
-			// ...other sub routes
+			{
+				path: '',
+				redirect: 'my-appointments',
+			},
 
 			{
 				path: 'my-appointments',
 				name: 'my appointments',
 				component: MyAppointmentView,
+				meta: { requiresAuth: true },
 			},
 			{
 				path: 'appointment-summary-report',
 				name: 'appointments summary report',
 				component: AppointmentSummaryView,
+				meta: { requiresAuth: true },
 			},
 			{
 				path: 'appointment-detailed-report',
 				name: 'appointments detailed report',
 				component: AppointmentDetailedView,
+				meta: { requiresAuth: true },
 			},
 		],
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '/about',

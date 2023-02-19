@@ -2,7 +2,7 @@
 	<div>
 		<v-navigation-drawer v-model="drawer" app>
 			<v-list class="d-flex align-center">
-				<v-list-item class="px-2">
+				<v-list-item>
 					<v-avatar color="indigo lighten-1">
 						<v-icon dark>mdi-account-circle</v-icon>
 					</v-avatar>
@@ -11,10 +11,10 @@
 				<v-list-item link>
 					<v-list-item-content>
 						<v-list-item-title class="text-h6">
-							{{ userLoggedIn.name }}
+							{{ loggedInUser.name }}
 						</v-list-item-title>
 						<v-list-item-subtitle>
-							{{ userLoggedIn.email }}
+							{{ loggedInUser.email }}
 						</v-list-item-subtitle>
 					</v-list-item-content>
 				</v-list-item>
@@ -74,6 +74,17 @@
 
 		<v-app-bar app color="primary" dense dark>
 			<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+			<div class="d-flex align-center">
+				<v-img
+					alt="Vuetify Logo"
+					class="shrink mr-2"
+					contain
+					:src="require('@/assets/doctor_appointment_logo.png')"
+					transition="scale-transition"
+					width="50"
+				/>
+			</div>
 
 			<v-toolbar-title>Doctors Appointment System</v-toolbar-title>
 
@@ -140,18 +151,20 @@ export default {
 				],
 			],
 		},
-		userLoggedIn: '',
 	}),
+	computed: {
+		loggedInUser() {
+			return this.$store.getters.getUserData;
+		},
+	},
 	methods: {
 		onHeaderMenuClick(action) {
 			if (action === 'logout') {
-				localStorage.removeItem('userData');
+				localStorage.removeItem('authToken');
+				this.$store.dispatch('onLogout', null);
 				this.$router.push('/home');
 			}
 		},
-	},
-	created() {
-		this.userLoggedIn = JSON.parse(localStorage.getItem('userData'));
 	},
 };
 </script>

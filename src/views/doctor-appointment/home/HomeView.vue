@@ -6,9 +6,9 @@
 					alt="Vuetify Logo"
 					class="shrink mr-2"
 					contain
-					src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+					:src="require('@/assets/doctor_appointment_logo.png')"
 					transition="scale-transition"
-					width="40"
+					width="50"
 				/>
 			</div>
 
@@ -47,7 +47,6 @@
 					</v-row>
 				</v-container>
 			</template>
-			<router-view></router-view>
 		</v-main>
 		<v-footer app class="d-flex justify-center">
 			Copyright © {{ new Date().getFullYear() }}, Doctor Appointment
@@ -58,12 +57,14 @@
 			<v-row justify="center">
 				<v-dialog
 					v-model="loginDialog"
-					max-width="350px"
+					max-width="310px"
 					ref="loginDialog"
 				>
 					<v-card>
 						<v-form ref="loginForm">
-							<v-card-title>Login</v-card-title>
+							<v-card-title class="d-flex justify-center">
+								Login
+							</v-card-title>
 							<v-card-text>
 								<v-text-field
 									:append-icon="'mdi-account'"
@@ -92,7 +93,7 @@
 									"
 								></v-text-field>
 							</v-card-text>
-							<v-card-actions>
+							<v-card-actions class="d-flex justify-center">
 								<v-btn
 									class="text-capitalize"
 									color="primary"
@@ -200,10 +201,10 @@ export default {
 					throw 'error';
 				}
 
-				localStorage.setItem(
-					'userData',
-					JSON.stringify(response.data.data),
-				);
+				let { token } = response.data.data;
+				localStorage.setItem('authToken', token);
+				this.$store.dispatch('onUserLogin', response.data.data);
+
 				this.snackbarConfig = {
 					snackbar: true,
 					text: `${response.data.message}`,

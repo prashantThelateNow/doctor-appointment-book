@@ -8,7 +8,7 @@
 		loading-text="Loading... Please wait"
 	>
 		<template v-slot:item.appointment_status="{ item }">
-			<v-chip :color="getColor(item.appointment_status)" dark>
+			<v-chip small :color="getColor(item.appointment_status)" dark>
 				{{ item.appointment_status }}
 			</v-chip>
 		</template>
@@ -20,7 +20,7 @@
 							v-bind="attrs"
 							v-on="on"
 							color="error"
-							@click="updateAppointmentStatus(item, 'Close')"
+							@click="updateAppointmentStatus(item, 'Closed')"
 						>
 							mdi-close
 						</v-icon>
@@ -34,7 +34,7 @@
 							v-bind="attrs"
 							v-on="on"
 							color="warning"
-							@click="updateAppointmentStatus(item, 'Cancel')"
+							@click="updateAppointmentStatus(item, 'Cancelled')"
 						>
 							mdi-cancel
 						</v-icon>
@@ -69,9 +69,8 @@ export default {
 		async fetchAppointments() {
 			this.tableLoader = true;
 			try {
-				const { id: doctorId } = JSON.parse(
-					localStorage.getItem('userData'),
-				).doctor_data;
+				const { id: doctorId } =
+					this.$store.getters.getUserData.doctor_data;
 				let response = await axios.get(
 					`${API_END_POINTS.FETCH_DOCTORS_APPOINTMENTS}${doctorId}`,
 				);
@@ -94,7 +93,7 @@ export default {
 		getColor(appointment_status) {
 			return appointment_status === 'Open'
 				? 'success'
-				: appointment_status === 'Close'
+				: appointment_status === 'Closed'
 				? 'error'
 				: 'warning';
 		},
