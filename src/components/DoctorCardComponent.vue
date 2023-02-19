@@ -73,8 +73,9 @@
 					<v-card>
 						<v-form ref="appointmentDetailForm">
 							<v-card-text>
-								<div class="text-subtitle-2 mb-2">
+								<div class="text-subtitle-2 mb-2 text-center">
 									Please provide your appointment details
+									below
 								</div>
 								<v-container class="grey lighten-4">
 									<div class="text-subtitle-3 mb-2">
@@ -198,7 +199,7 @@
 									</v-row>
 								</v-container>
 							</v-card-text>
-							<v-card-actions>
+							<v-card-actions class="d-flex justify-center">
 								<v-btn
 									class="text-capitalize"
 									color="primary"
