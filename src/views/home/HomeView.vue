@@ -143,8 +143,8 @@
 
 <script>
 import DoctorCardComponent from '@/components/DoctorCardComponent.vue';
+import API_END_POINTS from '@/shared/ApiEndPoint';
 import axios from 'axios';
-import API_END_POINTS from '../../../shared/ApiEndPoint';
 
 export default {
 	name: 'HomeView',

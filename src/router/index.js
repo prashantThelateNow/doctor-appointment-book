@@ -1,9 +1,9 @@
+import MyAppointmentView from '@/views/doctor/MyAppointmentView.vue';
+import PageNotFoundView from '@/views/PageNotFoundView.vue';
+import AppointmentDetailedView from '@/views/report/AppointmentDetailedView.vue';
+import AppointmentSummaryView from '@/views/report/AppointmentSummaryView.vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import MyAppointmentView from '../views/doctor-appointment/doctor/MyAppointmentView.vue';
-import PageNotFoundView from '../views/doctor-appointment/PageNotFoundView.vue';
-import AppointmentDetailedView from '../views/doctor-appointment/report/AppointmentDetailedView.vue';
-import AppointmentSummaryView from '../views/doctor-appointment/report/AppointmentSummaryView.vue';
 
 Vue.use(VueRouter);
 
@@ -16,15 +16,13 @@ const routes = [
 		path: '/home',
 		name: 'home',
 		component: () =>
-			import(
-				/* webpackChunkName: "home" */ '../views/doctor-appointment/home/HomeView.vue'
-			),
+			import(/* webpackChunkName: "home" */ '@/views/home/HomeView.vue'),
 	},
 	{
 		path: '/doctor',
 		component: () =>
 			import(
-				/* webpackChunkName: "doctor" */ '../views/doctor-appointment/doctor/DoctorView.vue'
+				/* webpackChunkName: "doctor" */ '@/views/doctor/DoctorView.vue'
 			),
 		children: [
 			{
@@ -52,15 +50,6 @@ const routes = [
 			},
 		],
 		meta: { requiresAuth: true },
-	},
-	{
-		path: '/about',
-		name: 'about',
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
-		component: () =>
-			import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
 	},
 	{
 		path: '*',
