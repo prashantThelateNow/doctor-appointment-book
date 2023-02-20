@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-card class="mx-1 my-1">
+		<v-card class="my-2">
 			<v-card-text class="d-flex justify-space-between align-center">
 				<div class="text-subtitle-2 mb-2">{{ doctor.name }}</div>
 				<v-btn
@@ -69,7 +69,7 @@
 
 		<template>
 			<v-row justify="center">
-				<v-dialog v-model="appointmentDetailDialog" max-width="600px">
+				<v-dialog v-model="appointmentDetailDialog" max-width="500px">
 					<v-card>
 						<v-form ref="appointmentDetailForm">
 							<v-card-text>
@@ -77,7 +77,7 @@
 									Please provide your appointment details
 									below
 								</div>
-								<v-container class="grey lighten-4">
+								<v-container class="grey lighten-5">
 									<div class="text-subtitle-3 mb-2">
 										Appointment Information
 									</div>

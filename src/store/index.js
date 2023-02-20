@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
 	state: {
 		userData: null,
 	},
@@ -26,3 +26,10 @@ export default new Vuex.Store({
 	},
 	modules: {},
 });
+
+// Watch for changes to the state and persist to localStorage
+store.subscribe((mutation, state) => {
+	localStorage.setItem('app-state', JSON.stringify(state));
+});
+
+export default store;

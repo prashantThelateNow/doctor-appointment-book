@@ -12,8 +12,7 @@
 				/>
 			</div>
 
-			<v-toolbar-title>Doctors Appointment System</v-toolbar-title>
-			<v-spacer></v-spacer>
+			<v-toolbar-title>Book Appointment</v-toolbar-title>
 
 			<v-spacer></v-spacer>
 
@@ -24,16 +23,28 @@
 			<v-btn
 				small
 				text
-				class="text-capitalize"
+				class="teal text-capitalize"
 				@click="showLoginDialog()"
 			>
 				Login
 			</v-btn>
+
+			<template v-slot:extension>
+				<v-tabs align-with-title hide-slider show-arrow>
+					<v-tab
+						v-for="(item, index) in toolBarItems"
+						:key="index"
+						class="text-capitalize"
+					>
+						{{ item }}
+					</v-tab>
+				</v-tabs>
+			</template>
 		</v-app-bar>
 		<v-main>
 			<template>
 				<v-container fluid class="grey lighten-3">
-					<v-row no-gutters>
+					<v-row class="mb-1">
 						<v-col
 							v-for="(doctor, index) in doctors"
 							:key="index"
@@ -142,6 +153,13 @@ export default {
 	},
 	data() {
 		return {
+			toolBarItems: [
+				'Find Doctors',
+				'video Consult',
+				'Medicines',
+				'Lab Tests',
+				'Surgeries',
+			],
 			user: {
 				username: '',
 				password: '',

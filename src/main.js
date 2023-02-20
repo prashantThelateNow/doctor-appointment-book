@@ -14,6 +14,15 @@ Vue.use(VDialogService);
 
 Vue.config.productionTip = false;
 
+// Load state from localStorage
+const appState = localStorage.getItem('app-state');
+if (!!appState) {
+	const savedState = JSON.parse(appState);
+	if (savedState) {
+		store.replaceState(savedState);
+	}
+}
+
 new Vue({
 	router,
 	store,

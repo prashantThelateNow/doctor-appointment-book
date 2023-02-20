@@ -11,10 +11,10 @@
 				<v-list-item link>
 					<v-list-item-content>
 						<v-list-item-title class="text-h6">
-							{{ loggedInUser.name }}
+							{{ loggedInUser?.name }}
 						</v-list-item-title>
 						<v-list-item-subtitle>
-							{{ loggedInUser.email }}
+							{{ loggedInUser?.email }}
 						</v-list-item-subtitle>
 					</v-list-item-content>
 				</v-list-item>
@@ -86,7 +86,7 @@
 				/>
 			</div>
 
-			<v-toolbar-title>Doctors Appointment System</v-toolbar-title>
+			<v-toolbar-title>Book Appointment</v-toolbar-title>
 
 			<v-spacer></v-spacer>
 
@@ -117,14 +117,14 @@
 		</v-app-bar>
 
 		<!-- Sizes your content based upon application components -->
-		<v-main>
+		<v-main class="grey lighten-3">
 			<!-- Provides the application the proper gutter -->
 			<v-container fluid>
 				<router-view></router-view>
 			</v-container>
 		</v-main>
 
-		<v-footer app>
+		<v-footer app class="d-flex justify-center">
 			Copyright © {{ new Date().getFullYear() }}, Doctor Appointment
 			System. All rights reserved.
 		</v-footer>

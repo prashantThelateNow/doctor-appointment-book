@@ -7,6 +7,11 @@
 		loading="tableLoader"
 		loading-text="Loading... Please wait"
 	>
+		<template v-slot:top>
+			<v-toolbar flat>
+				<v-toolbar-title>My Appointment</v-toolbar-title>
+			</v-toolbar>
+		</template>
 		<template v-slot:item.appointment_status="{ item }">
 			<v-chip small :color="getColor(item.appointment_status)" dark>
 				{{ item.appointment_status }}
